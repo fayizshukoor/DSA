@@ -210,30 +210,39 @@ function insertAfterTarget(arr, target, value) {
 print("Insert 99 after 4:", insertAfterTarget([2, 3, 4, 2, 5, 6], 4, 99));
 print("Target not found:", insertAfterTarget([2, 3, 4, 2, 5, 6], 10, 99));
 
-// ---------------------------------------------------------------------------
-// 8. MOVE ALL ZEROES TO BEGINNING
-// ---------------------------------------------------------------------------
-// Idea: Fill non-zero values from the end. Left side automatically becomes zero.
-// This keeps the order of non-zero numbers same.
-// Time: O(n), Space: O(1)
 
-function moveZerosToBeginning(arr) {
-  let insertPosition = arr.length - 1;
 
-  for (let i = arr.length - 1; i >= 0; i--) {
-    if (arr[i] !== 0) {
-      arr[insertPosition] = arr[i];
-      insertPosition--;
+// move zero to end
+
+let arr = [3, 4, 0, 5, 2, 0, 0, 1]; 
+
+function moveZeroLast(arr){
+    let index = 0;
+    for (let i = 0; i < arr.length; i++) { 
+        if (arr[i] !== 0) {
+            [arr[index], arr[i]] = [arr[i], arr[index]];
+            index++; 
+        }
     }
-  }
-
-  while (insertPosition >= 0) {
-    arr[insertPosition] = 0;
-    insertPosition--;
-  }
-
-  return arr;
+    return arr;
 }
 
-print("Move zeroes to beginning:", moveZerosToBeginning([1, 3, 4, 5, 0, 0, 3, 0, 2]));
-// Output: [0, 0, 0, 1, 3, 4, 5, 3, 2]
+console.log(moveZeroLast(arr));
+
+
+// move zero to beginning
+
+let arr = [3, 4, 0, 5, 2, 0, 0, 1]; 
+
+function moveZeroLast(arr){
+    let index = arr.length-1;
+    for (let i = arr.length-1; i >= 0 ; i--) { 
+        if (arr[i] !== 0) {
+            [arr[index], arr[i]] = [arr[i], arr[index]];
+            index--; 
+        }
+    }
+    return arr;
+}
+
+console.log(moveZeroLast(arr));

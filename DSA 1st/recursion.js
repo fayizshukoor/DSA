@@ -175,3 +175,69 @@ function sumOfOdd(n){
 }
 
 console.log(sumOfOdd(5));
+
+
+// file system
+const fileSystem = {
+    name: 'root',
+    files: ['file1.txt', 'file2.txt'],
+    folders: [
+      {
+        name: 'docs',
+        files: ['doc1.pdf', 'doc2.pdf'],
+        folders: [
+          {
+            name: 'personal',
+            files: ['resume.docx'],
+            folders: [],
+          }
+        ],
+      },
+      {
+        name: 'images',
+        files: ['photo1.jpg', 'photo2.jpg'],
+        folders: [],
+      },
+    ],
+  };
+  
+  // My Logic
+  
+  // function fileSystemMerge(fs, result=[], i=0){
+  
+  //     if(fs.files.length !== 0){
+  //         result.push(...fs.files);
+  //     }
+  
+  //     if(fs.folders.length === 0){
+  //         return;
+  //     }
+  
+  //     if(fs.folders.length !== 0){
+  //         fileSystemMerge(fs.folders[i], result, i);
+  //     } 
+  
+  //     if(i < fs.folders.length-1){        
+  //         fileSystemMerge(fs.folders[++i], result , i);
+          
+  //     }
+  
+  //     return result;
+  
+  // }
+  
+  // Correct solution
+  
+  function fileSystemMerge(fs, result = []) {
+      result.push(...fs.files);
+  
+      for (const folder of fs.folders) {
+          fileSystemMerge(folder, result);
+      }
+  
+      return result;
+  }
+  
+  
+  // output: ['file1.txt', 'file2.txt','doc1.pdf', 'doc2.pdf','resume.docx','photo1.jpg', 'photo2.jpg']
+  console.log(fileSystemMerge(fileSystem))

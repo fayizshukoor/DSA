@@ -4,7 +4,7 @@ class MaxHeap{
     }
 
     parent(index){
-        return Math.floor((index)-1/2);
+        return Math.floor((index-1)/2);
     }
 
     leftChild(index){
